@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSYATRA - Grade Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+    body {
+      background-color: #000;
+      font-family: 'Inter', sans-serif;
+      color: white;
+    }
+
+    .nav-3d {
+      background: #000;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9), inset 0 0 10px #4db8ff, 0 0 15px #4db8ff;
+      transition: box-shadow 0.3s ease;
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+
+    .nav-3d a {
+      text-shadow: 0 0 5px #4db8ff, 0 0 10px #4db8ff;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      display: inline-block;
+      transform-style: preserve-3d;
+      will-change: transform;
+      cursor: pointer;
+    }
+
+    .nav-3d a:hover {
+      text-shadow: 0 0 15px #4db8ff, 0 0 25px #4db8ff, 0 0 35px #1a8cff;
+      transform: translateZ(15px) scale(1.1);
+    }
+
+    .nav-3d a.login-btn {
+      background: linear-gradient(145deg, #4db8ff, #1a8cff);
+      box-shadow: 0 5px 15px #4db8ff, inset 0 0 8px #1a8cff;
+      color: black;
+      text-shadow: none;
+    }
+
+    .nav-3d a.login-btn:hover {
+      background: linear-gradient(145deg, #1a8cff, #4db8ff);
+      box-shadow: 0 7px 20px #1a8cff, inset 0 0 10px #4db8ff;
+    }
+
+    .icon-3d {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      box-shadow: 0 0 10px #7c3aed, 0 0 20px #8b5cf6, 0 0 30px #a78bfa, inset 0 0 10px #c4b5fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 10px #7c3aed);
+      transform-style: preserve-3d;
+      transform: rotateX(15deg) rotateY(15deg);
+      transition: transform 0.3s ease;
+    }
+
+    .icon-3d:hover {
+      transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+    }
+
+    .shine {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 70%);
+      transform: rotate(25deg);
+      animation: shineMove 3s infinite;
+      pointer-events: none;
+      border-radius: 1rem;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes shineMove {
+      0% {
+        transform: translateX(-100%) rotate(25deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(25deg);
+      }
+    }
+
+    .card {
+      background-color: #1f2937;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8), 0 0 15px #4db8ff;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    select,
+    input {
+      width: 100%;
+      margin-top: 0.25rem;
+      padding: 0.75rem;
+      background-color: #111827;
+      border: 1px solid #374151;
+      border-radius: 0.5rem;
+      color: white;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      background: linear-gradient(145deg, #4db8ff, #1a8cff);
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(145deg, #1a8cff, #4db8ff);
+    }
+  </style>
+</head>
+
+<body class="bg-black">
+  <nav class="max-w-7xl mx-auto my-4 px-6 py-3 flex items-center justify-between nav-3d">
+    <div class="flex items-center space-x-4">
+      <div class="icon-3d relative">
+        <img alt="Logo" src="https://storage.googleapis.com/a1aa/image/9d9826d9-ba7e-4744-b31c-55af136d1872.jpg" width="40" height="40" />
+        <div class="shine"></div>
+      </div>
+      <div class="leading-tight select-none">
+        <h1 class="text-white text-lg font-bold tracking-wide">IITM</h1>
+        <h2 class="text-white text-sm tracking-widest">BSYATRA</h2>
+      </div>
+    </div>
+    <div class="flex space-x-8">
+      <a class="text-white text-lg font-normal font-['Inter']" href="index.html">Home</a>
+      <a class="text-white text-lg font-normal font-['Inter']" href="#">Quiz Prep</a>
+      <a class="text-white text-lg font-normal font-['Inter']" href="resources.html">Resources</a>
+      <a class="text-white text-lg font-normal font-['Inter']" href="tool.html">Tools</a>
+      <a class="text-white text-lg font-normal font-['Inter']" href="#">About Us</a>
+    </div>
+    <a class="text-lg font-semibold font-['Inter'] rounded-lg px-6 py-2 login-btn" href="#">Log In</a>
+  </nav>
+
+  <!-- Grade Calculator Replacing CGPA Calculator -->
+  <div class="card">
+    <h1 class="text-center text-2xl font-bold mb-4">Grade Calculator</h1>
+    <label for="subject">Select Subject:</label>
+    <select id="subject">
+      <option value="">-- Select Subject --</option>
+      <option value="math1">Mathematics for Data Science 1</option>
+      <option value="eng1">English 1</option>
+      <option value="ct">Computational Thinking</option>
+      <option value="stats1">Statistics for Data Science 1</option>
+      <option value="math2">Mathematics for Data Science 2</option>
+      <option value="eng2">English 2</option>
+      <option value="python">Intro to Python Programming</option>
+      <option value="stats2">Statistics for Data Science 2</option>
+    </select>
+    <div id="inputs" class="mt-4"></div>
+    <button onclick="calculateScore()">Calculate Final Score</button>
+    <h2 class="mt-4 text-xl text-center">Final Score: <span id="result">-</span></h2>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer text-sm text-center py-8 mt-12">
+    <div class="footer-socials mb-4">
+      <a href="#" class="mr-4 text-blue-400"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="#" class="text-red-400"><i class="fab fa-youtube"></i> YouTube</a>
+    </div>
+    <p>All rights reserved @ BSYATRA</p>
+    <p>BSYATRA is a nonprofit, student-led platform committed to learners. It will always remain free to use.</p>
+    <div class="mt-4">
+      <a href="#" class="mr-4">Financial Reports</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script>
+    const subjects = {
+      default: ["GAA", "Qz1", "Qz2", "F"],
+      stats1: ["GAA", "Qz1", "Qz2", "F", "Bonus"],
+      stats2: ["GAA", "Qz1", "Qz2", "F", "Bonus"],
+      python: ["GAA1", "GAA2", "Qz1", "F", "PE1", "PE2"]
+    };
+
+    document.getElementById('subject').addEventListener('change', function () {
+      const subject = this.value;
+      const container = document.getElementById('inputs');
+      container.innerHTML = '';
+
+      let fields = [];
+      if (subject === 'python') fields = subjects.python;
+      else if (subject === 'stats1') fields = subjects.stats1;
+      else if (subject === 'stats2') fields = subjects.stats2;
+      else if (subject) fields = subjects.default;
+
+      fields.forEach(field => {
+        container.innerHTML += `
+          <label>${field}:</label>
+          <input type="number" id="${field}" placeholder="Enter ${field}" />
+        `;
+      });
+    });
+
+    function calculateScore() {
+      const subject = document.getElementById('subject').value;
+      let T = 0;
+
+      if (!subject) return alert("Please select a subject.");
+
+      const val = id => parseFloat(document.getElementById(id)?.value || 0);
+
+      if (subject === 'python') {
+        const GAA1 = val('GAA1');
+        const GAA2 = val('GAA2');
+        const Qz1 = val('Qz1');
+        const F = val('F');
+        const PE1 = val('PE1');
+        const PE2 = val('PE2');
+        T = 0.1 * GAA1 + 0.1 * GAA2 + 0.1 * Qz1 + 0.4 * F + 0.25 * Math.max(PE1, PE2) + 0.15 * Math.min(PE1, PE2);
+      } else {
+        const GAA = val('GAA');
+        const Qz1 = val('Qz1');
+        const Qz2 = val('Qz2');
+        const F = val('F');
+        const Bonus = val('Bonus') > 5 ? 5 : val('Bonus');
+
+        const option1 = 0.6 * F + 0.2 * Math.max(Qz1, Qz2);
+        const option2 = 0.4 * F + 0.2 * Qz1 + 0.3 * Qz2;
+        T = 0.1 * GAA + Math.max(option1, option2);
+
+        if (subject === 'stats1' || subject === 'stats2') {
+          T += Bonus;
+        }
+      }
+
+      T = T > 100 ? 100 : T;
+      document.getElementById('result').innerText = T.toFixed(2);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,470 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Ace Grade Navbar 3D Dynamic with Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+        .nav-3d {
+            background: #000;
+            border-radius: 1rem;
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.9),
+                inset 0 0 10px #4db8ff,
+                0 0 15px #4db8ff;
+            transition: box-shadow 0.3s ease;
+            perspective: 800px;
+            transform-style: preserve-3d;
+        }
+
+        .nav-3d a {
+            text-shadow:
+                0 0 5px #4db8ff,
+                0 0 10px #4db8ff;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            display: inline-block;
+            transform-style: preserve-3d;
+            will-change: transform;
+            cursor: pointer;
+        }
+
+        .nav-3d a:hover {
+            text-shadow:
+                0 0 15px #4db8ff,
+                0 0 25px #4db8ff,
+                0 0 35px #1a8cff;
+            transform: translateZ(15px) scale(1.1);
+        }
+
+        .nav-3d a.login-btn {
+            background: linear-gradient(145deg, #4db8ff, #1a8cff);
+            box-shadow:
+                0 5px 15px #4db8ff,
+                inset 0 0 8px #1a8cff;
+            color: black;
+            text-shadow: none;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .nav-3d a.login-btn:hover {
+            background: linear-gradient(145deg, #1a8cff, #4db8ff);
+            box-shadow:
+                0 7px 20px #1a8cff,
+                inset 0 0 10px #4db8ff;
+            transform: translateZ(20px) scale(1.1);
+        }
+
+        .icon-3d {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            box-shadow: 0 0 10px #7c3aed, 0 0 20px #8b5cf6, 0 0 30px #a78bfa, inset 0 0 10px #c4b5fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 10px #7c3aed);
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(15deg);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-3d:hover {
+            transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+        }
+
+        .shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg,
+                    rgba(255, 255, 255, 0) 30%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 70%);
+            transform: rotate(25deg);
+            animation: shineMove 3s infinite;
+            pointer-events: none;
+            border-radius: 1rem;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes shineMove {
+            0% {
+                transform: translateX(-100%) rotate(25deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(25deg);
+            }
+        }
+
+        /* footer.css - Modified by ChatGPT */
+        .footer {
+            background: #0f172a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            padding: 4rem 2rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-brand p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-brand span {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .footer-socials a {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin-right: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-section h3,
+        .footer-contact h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #f1f5f9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-contact p,
+        .footer-contact a {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            color: #60a5fa;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .footer-bottom div {
+            margin-top: 0.5rem;
+        }
+
+        .footer-bottom div a {
+            margin: 0 1rem;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom div a:hover {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+
+<body class="bg-black">
+    <nav class="max-w-7xl mx-auto my-4 px-6 py-3 flex items-center justify-between nav-3d">
+        <!-- LOGO Section -->
+        <div class="flex items-center space-x-4">
+            <div class="icon-3d relative">
+                <img alt="Logo" src="https://storage.googleapis.com/a1aa/image/9d9826d9-ba7e-4744-b31c-55af136d1872.jpg"
+                    width="40" height="40" />
+                <div class="shine"></div>
+            </div>
+            <div class="leading-tight select-none">
+                <h1 class="text-white text-lg font-bold tracking-wide">IITM</h1>
+                <h2 class="text-white text-sm tracking-widest">BSYATRA</h2>
+            </div>
+        </div>
+
+        <!-- NAV LINKS Section -->
+        <div class="flex space-x-8">
+            <a class="text-white text-lg font-normal font-['Inter']" href="index.html">Home</a>
+            <a class="text-white text-lg font-normal font-['Inter']" href="#">Quiz Prep</a>
+            <a class="text-white text-lg font-normal font-['Inter']" href="resources.html">Resources</a>
+            <a class="text-white text-lg font-normal font-['Inter']" href="tool.html">Tools</a>
+            <a class="text-white text-lg font-normal font-['Inter']" href="#">About Us</a>
+        </div>
+
+        <!-- LOGIN BUTTON -->
+        <a class="text-lg font-semibold font-['Inter'] rounded-lg px-6 py-2 login-btn" href="#">Log In</a>
+    </nav>
+
+    <!-- Grade Predictor Form -->
+    <div class="max-w-3xl mx-auto my-12 px-6 py-10 bg-[#0f172a] rounded-2xl shadow-xl border border-blue-500/30">
+        <h1 class="text-3xl font-bold text-center text-red-500 mb-8">Marks Predictor</h1>
+
+        <form class="space-y-6">
+            <div>
+                <label class="block mb-2 text-sm font-medium">Select Level:</label>
+                <select class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white">
+                    <option>Foundation</option>
+                    <!-- <option>Diploma</option>
+          <option>BS</option> -->
+                </select>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium ">Select Subject:</label>
+                <select class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-red-500 text-white">
+                    <option value="">-- Select Subject --</option>
+                    <option value="math1">Mathematics for Data Science 1</option>
+                    <option value="eng1">English 1</option>
+                    <option value="ct">Computational Thinking</option>
+                    <option value="stats1">Statistics for Data Science 1</option>
+                    <option value="math2">Mathematics for Data Science 2</option>
+                    <option value="eng2">English 2</option>
+                    <option value="python">Intro to Python Programming</option>
+                    <option value="stats2">Statistics for Data Science 2</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium">GAA (out of 100):</label>
+                <input type="number" placeholder="e.g. 88"
+                    class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white" />
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium">Quiz 1 (out of 100):</label>
+                <input type="number" placeholder="e.g. 76"
+                    class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white" />
+            </div>
+
+            <div>
+                <label class="block mb-2 text-sm font-medium">Quiz 2 (out of 100):</label>
+                <input type="number" placeholder="e.g. 84"
+                    class="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white" />
+            </div>
+
+            <div class="pt-6">
+                <button type="submit"
+                    class="w-full py-3 bg-gradient-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-white text-lg font-semibold rounded-lg shadow-md transition-all duration-300">
+                    PREDICT END TERM MARKS
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Get all input values
+            const gaa = parseFloat(document.querySelectorAll("input")[0].value) || 0;
+            const quiz1 = parseFloat(document.querySelectorAll("input")[1].value) || 0;
+            const quiz2 = parseFloat(document.querySelectorAll("input")[2].value) || 0;
+
+            // Example weights (adjust if needed)
+            const gaaWeight = 0.2;
+            const quiz1Weight = 0.25;
+            const quiz2Weight = 0.25;
+            const endTermWeight = 0.3;
+
+            // Calculate current marks from known inputs
+            const knownMarks = gaa * gaaWeight + quiz1 * quiz1Weight + quiz2 * quiz2Weight;
+
+            // Simulate end term required
+            let endTerm = 100; // assume full marks to predict T
+            let T = knownMarks + (endTerm * endTermWeight);
+
+            // Now check edge cases before assigning grades
+            let status = "";
+            let grade = "";
+            let point = "";
+
+            if (gaa < 40 || (quiz1 === 0 && quiz2 === 0)) {
+                status = "Fail (Not eligible for final exam)";
+                grade = "WA/WQ";
+                point = "0";
+            } else {
+                // Calculate total score from user inputs
+                const endTermInput = prompt("Enter expected End Term Marks (out of 100):");
+                const endTermScore = parseFloat(endTermInput) || 0;
+
+                T = knownMarks + (endTermScore * endTermWeight);
+
+                // Assign grade based on T
+                if (T >= 90) {
+                    grade = "S"; point = 10;
+                } else if (T >= 80) {
+                    grade = "A"; point = 9;
+                } else if (T >= 70) {
+                    grade = "B"; point = 8;
+                } else if (T >= 60) {
+                    grade = "C"; point = 7;
+                } else if (T >= 50) {
+                    grade = "D"; point = 6;
+                } else if (T >= 40) {
+                    grade = "E"; point = 4;
+                } else {
+                    grade = "U"; point = 0;
+                }
+
+                status = T >= 40 ? "Pass" : "Fail";
+
+                // Incomplete status simulation (manual triggers)
+                const incompleteOption = prompt("Were you absent in:\n1 = Only ET\n2 = ET & OPPE\n3 = Only OPPE\nLeave blank if not absent");
+                if (incompleteOption === "1") {
+                    grade = "I"; status = "Incomplete"; point = "-";
+                } else if (incompleteOption === "2") {
+                    grade = "I_BOTH"; status = "Incomplete"; point = "-";
+                } else if (incompleteOption === "3") {
+                    grade = "I_OP"; status = "Incomplete"; point = "-";
+                }
+            }
+
+            // Final output
+            alert(`📘 Total Score (T): ${T.toFixed(2)}\n📗 Status: ${status}\n🎓 Grade: ${grade}\n⭐ Grade Point: ${point}`);
+        });
+    </script>
+
+
+
+</body>
+<!-- footer.html -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- LOGO Section -->
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img alt="Logo" src="https://storage.googleapis.com/a1aa/image/9d9826d9-ba7e-4744-b31c-55af136d1872.jpg" />
+        <h2>IITM BSYATRA</h2>
+      </div>
+      <p>A platform by IITM BS students to help you <span>learn smarter</span>.</p>
+    </div>
+
+    <!-- Socials -->
+    <div class="footer-socials">
+      <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+    </div>
+
+    <!-- Sections -->
+    <div class="footer-section">
+      <h3>Quiz Prep</h3>
+      <ul>
+        <li><a href="#">Quiz Simulator</a></li>
+        <li><a href="#">Previous Year Papers</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#">Lectures</a></li>
+        <li><a href="#">Notes</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>DS Documents</h3>
+      <ul>
+        <li><a href="#">DS Handbook</a></li>
+        <li><a href="#">DS Grading doc</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Tools</h3>
+      <ul>
+        <li><a href="#">Grade Predictor</a></li>
+        <li><a href="#">Grade Calculator</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:founder@bsyatra.in">founder@bsyatra.in</a></p>
+    </div>
+
+  </div> <!-- 👈 this was missing -->
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p>All rights reserved @ BSYATRA</p>
+    <p>BSYATRA is a nonprofit, student-led platform committed to learners. It will always remain free to use.</p>
+    <div>
+      <a href="#">Financial Reports</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+</html>

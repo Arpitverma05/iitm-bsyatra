@@ -1,0 +1,154 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   IITM BSYATRA 3D Logo Dark Theme with 3D BSYATRA Text
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&amp;family=Montserrat:wght@700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   /* Dark background gradient */
+   body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+   }
+   /* 3D text effect with blue-purple shine */
+   .text-3d {
+    position: relative;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #a5b4fc; /* Light indigo */
+    text-shadow:
+      0 0 5px #7c3aed,
+      0 0 10px #7c3aed,
+      0 0 20px #8b5cf6,
+      0 0 30px #8b5cf6,
+      0 0 40px #c4b5fd,
+      0 0 50px #c4b5fd,
+      0 0 60px #a78bfa;
+   }
+   .text-3d::before,
+   .text-3d::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left top;
+    -webkit-transform-origin: left top;
+    z-index: -1;
+   }
+   .text-3d::before {
+    color: #7c3aed; /* Purple */
+    transform: translate(3px, 3px) skew(-15deg, 0deg);
+    filter: brightness(0.7);
+    z-index: -2;
+    text-shadow:
+      0 0 5px #7c3aed,
+      0 0 10px #7c3aed;
+   }
+   .text-3d::after {
+    color: #5b21b6; /* Darker purple */
+    transform: translate(6px, 6px) skew(-15deg, 0deg);
+    filter: brightness(0.5);
+    z-index: -3;
+    text-shadow:
+      0 0 5px #5b21b6,
+      0 0 10px #5b21b6;
+   }
+   /* 3D icon with blue-purple neon glow and shine animation */
+   .icon-3d {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    box-shadow:
+      0 0 10px #7c3aed,
+      0 0 20px #8b5cf6,
+      0 0 30px #a78bfa,
+      inset 0 0 10px #c4b5fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    overflow: visible;
+    filter: drop-shadow(0 0 10px #7c3aed);
+    transform-style: preserve-3d;
+    transform: rotateX(20deg) rotateY(20deg);
+    transition: transform 0.3s ease;
+   }
+   .icon-3d:hover {
+    transform: rotateX(0deg) rotateY(0deg) scale(1.1);
+   }
+   .icon-3d img {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 5px #a78bfa);
+    border-radius: 0.5rem;
+   }
+   /* Shine animation */
+   .shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    transform: rotate(25deg);
+    animation: shineMove 3s infinite;
+    pointer-events: none;
+    border-radius: 1rem;
+    mix-blend-mode: screen;
+   }
+   @keyframes shineMove {
+    0% {
+     transform: translateX(-100%) rotate(25deg);
+    }
+    100% {
+     transform: translateX(100%) rotate(25deg);
+    }
+   }
+   /* Subtitle styling */
+   .subtitle {
+    color: #a5b4fc;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+    user-select: none;
+    text-shadow:
+      0 0 5px #7c3aed,
+      0 0 10px #7c3aed;
+   }
+  </style>
+ </head>
+ <body class="flex items-center justify-center min-h-screen p-6">
+  <div class="flex items-center space-x-8">
+   <!-- 3D Logo Icon with shine -->
+   <div class="icon-3d relative">
+    <img alt="3D stylized logo icon representing IITM BSYATRA with intertwined letters B and S in glowing blue and purple neon colors, modern tech-inspired design with depth and shadow" height="80" src="https://storage.googleapis.com/a1aa/image/9d9826d9-ba7e-4744-b31c-55af136d1872.jpg" width="80"/>
+    <div class="shine"></div>
+   </div>
+   <!-- 3D Text part of the logo -->
+   <div class="flex flex-col leading-tight select-none">
+    <h1 class="text-6xl font-['Roboto_Slab'] text-3d" data-text="IITM">
+     IITM
+    </h1>
+    <h2 class="text-5xl font-['Montserrat'] font-extrabold text-3d tracking-widest" data-text="BSYATRA">
+     BSYATRA
+    </h2>
+    <p class="subtitle">
+     Innovation &amp; Technology
+    </p>
+   </div>
+  </div>
+ </body>
+</html>   
